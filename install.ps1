@@ -88,28 +88,35 @@ foreach ($module in $python_modules) {
 
 
 # download python script from GitHub
-$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/nfc.py?token=GHSAT0AAAAAACBKCKYUYYAELBF5YJFNQ4OCZBWWXVA"
+$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/nfc.py"
 $outputPath = "C:\Documents_NoBackup\scripts\nfc.py"
 Invoke-WebRequest $url -OutFile $outputPath
 
 
-$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/start_checkifcrashed.ps1?token=GHSAT0AAAAAACBKCKYU427XCJC4QKFGEKXKZBWWYAA"
+$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/start_checkifcrashed.ps1"
 $output = "C:\Documents_NoBackup\scripts\start_checkifcrashed.ps1"
 Invoke-WebRequest $url -OutFile $output
 
 
-$StartupFolder = "${env:ProgramData}\Microsoft\Windows\Start Menu\Programs\StartUp"
-$ShortcutFile = "${StartupFolder}\start_checkifcrashed.lnk"
-$ScriptPath = "C:\Documents_NoBackup\scripts\start_checkifcrashed.ps1"
 
-# Create a shortcut to the PowerShell script in the Startup folder
+$scriptsFolder = "C:\Documents_NoBackup\scripts"
+$batchFile = Join-Path $scriptsFolder "start_checkifcrashed.bat"
+$psScript = Join-Path $scriptsFolder "start_checkifcrashed.ps1"
+
+# Create the batch file to run the PowerShell script in hidden mode
+@"
+@echo off
+powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File "$psScript"
+"@ | Set-Content -Path $batchFile -Encoding ASCII
+
+# Create a shortcut to the batch file in the Startup folder for all users
+$shortcutPath = Join-Path "${env:ProgramData}\Microsoft\Windows\Start Menu\Programs\StartUp" "start_checkifcrashed.lnk"
 $WshShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut($ShortcutFile)
-$Shortcut.TargetPath = "powershell.exe"
-$Shortcut.Arguments = "-ExecutionPolicy Bypass -File -WindowStyle hidden `"$ScriptPath`""
+$Shortcut = $WshShell.CreateShortcut($shortcutPath)
+$Shortcut.TargetPath = $batchFile
 $Shortcut.Save()
 
-
+#
 
 # INSTALLED - SUCCESSFULLY
 Write-Output "INSTALLED - SUCCESSFULLY"
