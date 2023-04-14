@@ -15,7 +15,7 @@ Before running the script, ensure that you have the latest version of PowerShell
 To run the script, simply open PowerShell with administrator privileges, navigate to the directory where the script is saved, and run the following command:
 
 ```
-.\script_name.ps1
+.\install.ps1
 ```
 
 ## Authors
