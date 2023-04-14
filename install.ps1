@@ -120,3 +120,34 @@ $Shortcut.Save()
 
 # INSTALLED - SUCCESSFULLY
 Write-Output "INSTALLED - SUCCESSFULLY"
+
+Write-Output "Creating KVP App"
+
+# Define variables
+$url = "https://sigacover.sharepoint.com/sites/ACIP/Lists/CIPs/NewForm.aspx"
+$iconUrl = "https://github.com/DarkHor53/nfcinstaller_assets/raw/main/cip.ico"
+$shortcutPath = "KVP App.lnk"
+$iconPath = "C:\Documents_NoBackup\scripts\Website.ico"
+
+# Download the icon from the URL
+Invoke-WebRequest $iconUrl -OutFile $iconPath
+
+# Create the shortcut for all users
+$users = Get-ChildItem -Path C:\Users -Exclude "Public", "Default", "Default User" | Where-Object { $_.PSIsContainer }
+foreach ($user in $users) {
+    $desktopPath = Join-Path $user.FullName "Desktop"
+    $shortcutFullPath = Join-Path $desktopPath $shortcutPath
+
+    # Create the shortcut for the current user
+    $WshShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut($shortcutFullPath)
+    $Shortcut.TargetPath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+    $Shortcut.Arguments = "--app=$url"
+    $Shortcut.IconLocation = $iconPath
+    $Shortcut.Save()
+    Write-Output "Shortcut created for user $($user.Name)"
+}
+
+write-host "KVP App created successfully"
+Write-Host "Press any key to exit"
+$null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
