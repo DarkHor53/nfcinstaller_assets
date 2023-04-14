@@ -52,13 +52,6 @@ if (Test-Path -Path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTo
     Write-Output "ERROR: Build Tools installation failed."
 }
 
-# Refresh the environment in the current PowerShell session
-
-
-$url = "https://raw.githubusercontent.com/chocolatey-archive/chocolatey/master/src/redirects/RefreshEnv.cmd"
-$outputPath = "C:\Documents_NoBackup\scripts\refreshenv.cmd"
-Invoke-WebRequest $url -OutFile $outputPath
-cmd /c $outputPath
 
 
 # Define the path to the Python executable
@@ -88,12 +81,12 @@ foreach ($module in $python_modules) {
 
 
 # download python script from GitHub
-$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/nfc.py"
+$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/assets/nfc.py"
 $outputPath = "C:\Documents_NoBackup\scripts\nfc.py"
 Invoke-WebRequest $url -OutFile $outputPath
 
 
-$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/start_checkifcrashed.ps1"
+$url = "https://raw.githubusercontent.com/DarkHor53/nfcinstaller_assets/main/assets/start_checkifcrashed.ps1"
 $output = "C:\Documents_NoBackup\scripts\start_checkifcrashed.ps1"
 Invoke-WebRequest $url -OutFile $output
 
@@ -125,7 +118,7 @@ Write-Output "Creating KVP App"
 
 # Define variables
 $url = "https://sigacover.sharepoint.com/sites/ACIP/Lists/CIPs/NewForm.aspx"
-$iconUrl = "https://github.com/DarkHor53/nfcinstaller_assets/raw/main/cip.ico"
+$iconUrl = "https://github.com/DarkHor53/nfcinstaller_assets/raw/main/assets/cip.ico"
 $shortcutPath = "KVP App.lnk"
 $iconPath = "C:\Documents_NoBackup\scripts\Website.ico"
 
@@ -149,5 +142,3 @@ foreach ($user in $users) {
 }
 
 write-host "KVP App created successfully"
-Write-Host "Press any key to exit"
-$null = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
