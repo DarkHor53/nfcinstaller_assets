@@ -1,4 +1,4 @@
-# Project Name
+# NFC Reader setup for CIP App with NFC Authentication
 
 This project is a PowerShell script that automates the installation of necessary software and tools for a Windows machine, as well as the installation of Python modules and downloading of required scripts. It also creates a shortcut to a PowerShell script that checks for and restarts a program if it crashes.
 
