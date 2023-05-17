@@ -126,7 +126,7 @@ $iconPath = "C:\Documents_NoBackup\scripts\Website.ico"
 Invoke-WebRequest $iconUrl -OutFile $iconPath
 
 # Create the shortcut for all users
-$users = Get-ChildItem -Path C:\Users -Exclude "Public", "Default", "Default User" | Where-Object { $_.PSIsContainer }
+<#$users = Get-ChildItem -Path C:\Users -Exclude "Public", "Default", "Default User" | Where-Object { $_.PSIsContainer }
 foreach ($user in $users) {
     $desktopPath = Join-Path $user.FullName "Desktop"
     $shortcutFullPath = Join-Path $desktopPath $shortcutPath
@@ -140,5 +140,11 @@ foreach ($user in $users) {
     $Shortcut.Save()
     Write-Output "Shortcut created for user $($user.Name)"
 }
+#>
+
+Remove-Item -Path $python_outpath
+Remove-Item -Path $swig_outpath
+Remove-Item -Path $outpath
+
 
 write-host "KVP App created successfully"
