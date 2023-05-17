@@ -4,7 +4,7 @@ This project is a PowerShell script that automates the installation of necessary
 
 ## Getting Started
 
-To get started with this project, simply download the PowerShell script and run it on a Windows machine with administrator privileges. The script will automate the installation of Python, SWIG, Build Tools, and required Python modules, as well as download necessary scripts.
+To get started with this project, simply download the PowerShell script install.ps1 and run it on a Windows machine with administrator privileges. The script will automate the installation of Python, SWIG, Build Tools, and required Python modules, as well as download necessary scripts.
 
 ## Prerequisites
 
@@ -26,5 +26,4 @@ Darkhor53 - Initial work
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Acknowledgments
-Special thanks to anyone whose code was used.
+
