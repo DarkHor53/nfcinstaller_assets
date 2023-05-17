@@ -20,7 +20,7 @@ To run the script, simply open PowerShell with administrator privileges, navigat
 
 ## Authors
 
-Darkhor53 - Initial work
+Darkhor53 & leannuhh - Initial work
 
 ## License
 
