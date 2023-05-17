@@ -1,5 +1,6 @@
 ﻿Write-Output "Uninstalling Python..."
 
+#Stop python and uninstall
 $getPythonProcessGet = Get-Process -Name "python"
 
 if ($getPythonProcessGet -ne $null) {
@@ -11,7 +12,7 @@ if ($uninstallString) {
     cmd /c $uninstallString /quiet
 }
 
-
+#Remove swig 
 Write-Output "Removing SWIG..."
 Remove-Item -Recurse -Force "C:\swigwin-4.1.1"
 
